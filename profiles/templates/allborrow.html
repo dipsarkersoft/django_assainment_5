@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h3 class="text-2xl font-bold text-gray-800 mb-6">My Orders</h3>
+
+
+<div class="container">
+  <table class="min-w-full bg-white border border-gray-300 rounded-lg shadow-md">
+    <thead>
+      <tr class="bg-gray-100 border-b border-gray-300">
+        <th class="px-4 py-2 text-left text-gray-700 font-medium">Order ID</th>
+        <th class="px-4 py-2 text-left text-gray-700 font-medium">Image</th>
+        <th class="px-4 py-2 text-left text-gray-700 font-medium">Book Name</th>
+        <th class="px-4 py-2 text-left text-gray-700 font-medium"> Category</th>
+        <th class="px-4 py-2 text-left text-gray-700 font-medium">Total Price</th>
+        
+        <th class="px-4 py-2 text-left text-gray-700 font-medium"> Action</th>
+
+        <th class="px-4 py-2 text-left text-gray-700 font-medium"> Borrow Date</th>
+        <th class="px-4 py-2 text-left text-gray-700 font-medium"> Return Date</th>
+      </tr>
+      
+      
+    </thead>
+    <tbody>
+      {% for iteam in data %}
+      <tr class="border-b hover:bg-gray-50">
+       
+        <td class="px-4 py-2 text-gray-700">{{ iteam.id }}</td>
+
+        
+        <td class="px-4 py-2">
+          <img
+            src="{{ iteam.books.image.url }}"
+            alt="{{ iteam.books.name}}"
+            class="w-10 h-10 rounded-md object-cover"
+          />
+        </td>
+
+        
+        <td class="px-4 py-2 text-gray-700">{{ iteam.books.name|truncatewords:3 }}</td>
+
+        
+        <td class="px-4 py-2 text-gray-700">{{ iteam.books.category }}</td>
+
+      
+        <td class="px-4 py-2 text-gray-700 font-semibold">{{ iteam.total_price }}</td>
+
+        <td class="px-4 py-2 text-neutral-50  font-semibold">
+
+            {% if iteam.isReturn %}
+            <a class="bg-green-700 px-3 py-2 rounded " 
+            
+            >Returned </a>
+
+            {% else %}
+
+            <a class='bg-orange-700   py-2 px-3 rounded text-neutral-50'
+             href="{% url 'return_book' iteam.id %}" 
+             
+             >PAY </a>
+
+
+            {% endif %}
+            
+            
+        </td>
+
+        <td class="px-4 py-2 text-gray-700 font-semibold">{{ iteam.order_date }}</td>
+
+        <td class="px-4 py-2 text-gray-700 font-semibold">
+           
+
+            {% if iteam.isReturn %}
+            <a class="px-3 py-2 rounded " 
+            
+            >{{iteam.rturn_date}} </a>
+
+            {% else %}
+
+            <a class='  py-2 px-3 rounded text-neutral-50' >Not Returned </a>
+
+
+            {% endif %}
+        
+        </td>
+
+
+
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

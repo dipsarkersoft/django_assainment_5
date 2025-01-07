@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+
+    <body class="bg-gray-200">
+        <div class="max-w-lg mx-auto mt-10 bg-white rounded-lg shadow-md overflow-hidden">
+         
+          <div class="bg-blue-500 text-white text-center py-6">
+            <h1 class="text-2xl font-bold">Book Borrowed Successfully!</h1>
+          </div>
+      
+          
+          <div class="p-6">
+            <p class="text-lg font-semibold text-gray-800">Dear {{ user.first_name }},</p>
+            <p class="mt-2 text-gray-600">
+              Congratulations! You have successfully borrowed the book 
+              <span class="font-semibold text-blue-500">{{ book.name }}</span> for 
+              <span class="font-semibold text-blue-500">{{ book.price }} Taka</span>.
+            </p>
+      
+            <div class="mt-6">
+              <p class="text-gray-600">Here are the details of your transaction:</p>
+              <div class="mt-4 bg-gray-50 border rounded-lg p-4 shadow-sm">
+                <div class="flex justify-between mt-2">
+                  <span class="text-gray-500">Book Borrowed:</span>
+                  <span class="font-semibold text-gray-800">{{ book.name }}</span>
+                </div>
+                <div class="flex justify-between mt-2">
+                  <span class="text-gray-500">Book Cost:</span>
+                  <span class="font-semibold text-gray-800">{{ book.price }} Taka</span>
+                </div>
+                <div class="flex justify-between mt-2">
+                  <span class="text-gray-500">Remaining Balance:</span>
+                  <span class="font-semibold text-green-500">{{ user.account.balance }} Taka</span>
+                </div>
+              </div>
+            </div>
+      
+            <p class="mt-6 text-gray-600">
+              Thank you for choosing our library service.
+            </p>
+          </div>
+      
+        </div>
+    </body>
+      
+    
+
+</html>

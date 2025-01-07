@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+
+
+
+<div class="w-full">
+    <div class="container mx-auto my-4">
+       
+      <div class="flex flex-wrap">
+        {% for i in data %}
+        <a
+          href="{% url 'cateWise' i.slug %}"
+          class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md m-2 inline-block"
+        >
+          {{ i.name }}
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  
+    <div class="container mx-auto my-6">
+      
+      <h4 class="text-lg font-semibold text-gray-800 mb-4">
+        {{ product | length }} results found
+      </h4>
+  
+     
+      <div class="flex flex-wrap justify-center items-center">
+        {% for i in product %}
+        <div
+          class="max-w-sm bg-gray-200 rounded-lg shadow-md overflow-hidden p-4 m-3"
+        >
+        
+          <img
+            src="{{ i.image.url }}"
+            alt="{{ i.name }}"
+            class="w-32 h-32"
+          />
+
+         
+  
+         
+          <div class="mt-4 ">
+            <h5 class="text-xl font-bold text-gray-700">Name:  {{ i.name | truncatewords:4 }}</h5>
+            <p class="text-gray-600 text-sm mt-2">
+            Desc : {{ i.description | truncatewords:10 }}
+            </p>
+            <strong class="block text-lg text-red-600 mt-2">
+              Price: <span class="pl-3">{{ i.price }}</span>
+            </strong>
+  
+             
+            <a
+              href="{% url 'details' i.id %}"
+              class="mt-4 inline-block bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md"
+            >
+              Details
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  
+
+
+
+{% endblock  %}
