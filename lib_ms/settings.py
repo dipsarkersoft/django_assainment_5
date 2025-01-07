@@ -101,7 +101,7 @@ WSGI_APPLICATION = 'lib_ms.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(
         # Replace this value with your local database's connection string.
-        default=env("DB_URL")
+        default='postgresql://book_f9cs_user:Qi3Sk4wkvUw9cosjH8oVjDC313KCbOc8@dpg-ctulnqa3esus739e1big-a.oregon-postgres.render.com/book_f9cs'
         
     )
 }
